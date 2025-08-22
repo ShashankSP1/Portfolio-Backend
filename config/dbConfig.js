@@ -1,4 +1,3 @@
-// config/dbConfig.js
 const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
@@ -10,12 +9,18 @@ const sequelize = new Sequelize(
     host: process.env.DB_HOST,
     dialect: 'postgres',
     port: process.env.DB_PORT,
-    logging: false, // Set to true for SQL logs
+    logging: false,
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false, // Required for Neon
+      },
+    },
   }
 );
 
 sequelize.authenticate()
-  .then(() => console.log("Connected to PostgreSQL via Sequelize"))
+  .then(() => console.log("Connected to Neon PostgreSQL via Sequelize"))
   .catch(err => console.error("Database connection error:", err));
 
 module.exports = sequelize;
