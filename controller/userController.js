@@ -1,7 +1,6 @@
-// controllers/userController.js
 const User = require('../models/userModel');
 
-const getAllUsers = async (req, res) => {
+const getUsers = async (req, res) => {
   try {
     const users = await User.findAll();
     res.json(users);
@@ -10,7 +9,7 @@ const getAllUsers = async (req, res) => {
   }
 };
 
-const addUser = async (req, res) => {
+const createUser = async (req, res) => {
   const { name, email, role } = req.body;
   try {
     const newUser = await User.create({ name, email, role });
@@ -20,4 +19,4 @@ const addUser = async (req, res) => {
   }
 };
 
-module.exports = { getAllUsers, addUser };
+module.exports = { getUsers, createUser };
