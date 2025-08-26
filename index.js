@@ -2,12 +2,14 @@
 const express = require('express');
 const cors = require('cors');
 const sequelize = require('./config/dbConfig');
-const routes = require('./router/userRoutes');
+const userRoutes = require('./router/userRoutes');
+const emailRoutes = require('./router/emailRoutes');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use('/api', routes);
+app.use('/api', userRoutes);
+app.use('/api', emailRoutes);
 
 sequelize.sync() // Creates the table if it doesn't exist
   .then(() => {

@@ -37,4 +37,38 @@ const User = sequelize.define('User', {
   tableName: 'users'
 });
 
+
+const Email = sequelize.define('Email', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
+  to: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      isEmail: true
+    }
+  },
+  subject: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  text: {
+    type: DataTypes.TEXT,
+    allowNull: false
+  },
+  createdAt: {
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW
+  },
+  updatedAt: {
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW
+  }
+}, {
+  tableName: 'emails'
+})
+
 module.exports = User;
