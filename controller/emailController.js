@@ -7,13 +7,16 @@ const sendEmail = async (req, res) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'shashankshiva6361@gmail.com',
-      pass: 'Shashank12@#'
+      user: 'shashank636123@gmail.com',
+      pass: 'ljjz zcec pciy llib'
+    },
+    tls:{
+      rejectUnauthorized:false
     }
   });
 
   const mailOptions = {
-    from: 'shashankshiva6361@gmail.com',
+    from: 'shashank636123@gmail.com',
     to,
     subject,
     text
@@ -21,7 +24,7 @@ const sendEmail = async (req, res) => {
 
   try {
     await transporter.sendMail(mailOptions);
-    res.status(200).json({ message: 'Email sent succes                                                                                                                                                                                                                                                                                                                                                    sfully!' });
+    res.status(200).json({ message: 'Email sent successfully!' });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
