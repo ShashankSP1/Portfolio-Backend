@@ -17,7 +17,7 @@ app.use('/api', userRoutes);
 app.use('/api', emailRoutes);
 
 app.post("/api/test", (req, res) => {
-  res.json({ message: "Hello from backend!" });
+  res.json({ message: "Hello from backend!"});
 });
 
 app.listen(5000, () => {
