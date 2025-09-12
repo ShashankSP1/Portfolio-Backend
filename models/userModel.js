@@ -71,4 +71,4 @@ const Email = sequelize.define('Email', {
   tableName: 'emails'
 })
 
-module.exports = User;
+module.exports = { User, Email };
