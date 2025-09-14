@@ -20,7 +20,7 @@ const sequelize = new Sequelize(
 );
 
 sequelize.authenticate()
-  .then(() => console.log("Connected to Neon PostgreSQL via Sequelize"))
-  .catch(err => console.error("Database connection error:", err));
+  .then(() => console.log("✅ Connected to Neon PostgreSQL via Sequelize"))
+  .catch(err => console.error("❌ Database connection error:", err));
 
 module.exports = sequelize;

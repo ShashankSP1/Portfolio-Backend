@@ -6,11 +6,16 @@ const userRoutes = require('./router/userRoutes');
 const emailRoutes = require('./router/emailRoutes');
 
 const app = express();
-app.use(cors({
-  origin: "http://localhost:3000", 
-  methods: ["GET", "POST"],        
-  credentials: true                
-}));
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://shashanksp-portfolio.vercel.app"
+    ],
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 app.use('/api', userRoutes);
@@ -20,15 +25,13 @@ app.post("/api/test", (req, res) => {
   res.json({ message: "Hello from backend!"});
 });
 
-app.listen(5000, () => {
-  console.log("Server running on port 5000");
-});
+const PORT = process.env.PORT || 5000;
 
 sequelize.sync() // Creates the table if it doesn't exist
   .then(() => {
     console.log("Database & tables created!");
-    app.listen(process.env.PORT || 5000, () =>
-      console.log(`Server running on port ${process.env.PORT || 5000}`)
+    app.listen(PORT, () =>
+      console.log(`Server running on port ${PORT}`)
     );
   })
   .catch(err => console.error("Error syncing database:", err));
