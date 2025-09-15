@@ -4,15 +4,18 @@ const nodemailer = require("nodemailer");
 // const { sendEmail } = require('../controller/emailController');
 
 router.post("/send-email", async (req, res) => {
+  console.log("📨 /send-email called, body:", req.body);
   try {
     const transporter = nodemailer.createTransport({
       host: process.env.EMAIL_HOST || "smtp.gmail.com",
       port: Number(process.env.EMAIL_PORT) || 465,
-      secure: true, // true for 465, false for 587
+      secure: process.env.EMAIL_PORT ? Number(process.env.EMAIL_PORT) === 465 : true, // true for 465, false for 587
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
+      socketTimeout: 10000,
+      connectionTimeout: 10000,
     });
 
     await transporter.verify();
