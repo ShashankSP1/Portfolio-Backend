@@ -25,7 +25,7 @@ app.post("/api/test", (req, res) => {
   res.json({ message: "Hello from backend!"});
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
 
 sequelize.sync() // Creates the table if it doesn't exist
   .then(() => {
